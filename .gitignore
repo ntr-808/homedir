@@ -10,3 +10,6 @@
 !.vim/*
 !.bash_prompt
 !.aliases
+!.gitignore_global
+!.exports
+!.functions
