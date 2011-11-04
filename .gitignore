@@ -1,0 +1,11 @@
+# ignore everything
+*
+# except:
+!.gitignore
+!.bashrc
+!.bash_profile
+!.bash_logout
+!.inputrc
+!.vimrc
+!.vim/*
+!.bash_prompt
