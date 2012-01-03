@@ -8,6 +8,7 @@ fi
 if tput setaf 1 &> /dev/null; then
   tput sgr0
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
+    DARK=$(tput setaf 236)
     MAGENTA=$(tput setaf 120)
     ORANGE=$(tput setaf 172)
     GREEN=$(tput setaf 23)
@@ -33,6 +34,17 @@ else
   RESET="\033[m"
 fi
 
+
+# timestamp and separator
+TIMESTAMP=$(date '+%T')
+let fillsize=${COLUMNS}-11
+fill=""
+while [ "$fillsize" -gt "0" ]
+do
+fill="-${fill}" # fill with underscores to work on
+let fillsize=${fillsize}-1
+done
+
 function parse_git_dirty() {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
@@ -41,4 +53,4 @@ function parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-PS1="\[${BOLD}${GREEN}\]\u \[$WHITE\]at \[$PURPLE\]\h \[$WHITE\]in \[$BLUE\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$MAGENTA\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+PS1="${DARK}$fill ${TIMESTAMP}\n\[${BOLD}\]\[${GREEN}\]\u \[$WHITE\]at \[$PURPLE\]\h \[$WHITE\]in \[$BLUE\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$MAGENTA\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
