@@ -72,8 +72,12 @@ alias pumpitup="osascript -e 'set volume 10'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 # Margh Stuff
-alias syncmusic="sudo rsync -va --ignore-existing --delete /Volumes/Music/ ~/Music/Music\ Library/"
-alias backupmusic="sudo rsync -va --ignore-existing --delete ~/Music/Music\ Library/ /Volumes/nmusic/"
+alias syncmusic="sudo rsync -vnrW --ignore-existing --delete --progress /Volumes/Music\ Library/ ~/Music/Music\ Library"
+alias backupmusic="sudo rsync -vnrW --ignore-existing --delete --progress ~/Music/iTunes/iTunes\ Media/Music /Volumes/Music\ Collection/"
 alias sl='open -a "/Applications/Sublime Text 2.app"'
 alias cf='/usr/local/bin/coffee'
-alias w="cd ~/webclient"
+alias wcbox="ssh nathanr@192.168.60.212"
+alias wcstart="ssh nathanr@192.168.60.212 'nohup sh server.sh &'"
+alias windows="sudo sh ~/windows"
+alias pgbox="ssh pangolin@106.187.35.174"
+alias cfwatch="/usr/local/bin/coffee -o ~/pangolin/public -cw ~/pangolin/client/sencha"
